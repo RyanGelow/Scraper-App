@@ -5,7 +5,7 @@ const logger = require("morgan");
 const exphbs  = require('express-handlebars');
 const mongoose = require("mongoose");
 
-const PORT = 3050;
+const PORT = process.env.PORT || 3050;
 
 const app = express();
 
