@@ -9,12 +9,8 @@ const PORT = 3050;
 
 const app = express();
 
-app.engine('handlebars', exphbs());
+app.engine('handlebars', exphbs({ defaultLayout: "main" }));
 app.set('view engine', 'handlebars');
- 
-app.get('/', function (req, res) {
-    res.render('home');
-})
 
 // Configure middleware
 
