@@ -24,7 +24,7 @@ const routes = require('./app/routes');
 app.use(routes);
 
 
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
