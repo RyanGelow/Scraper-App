@@ -1,43 +1,37 @@
 <div>
-    <h1 class="card z-depth-3 center-align">The Latest Sports News in the Bay</h1>
-    <h5 class="card z-depth-3 center-align">Look above for 'Scrape' & 'Clear' in nav -- <br> Scraping the latest articles and Clearing old ones... <br> Refresh page after making updates.</h5>
+    <h1 class="card-panel hoverable z-depth-3 center-align">The Latest Bay Area <br> Sports News</h1>
+    <h5 class="card-panel hoverable z-depth-3 center-align hide-on-med-and-down">Look above for 'Scrape' and 'Clear' in nav -- <br> Scraping the latest articles and Clearing old ones...</h5>
 
 </div>
+
+
+{{#each items}}
 <div class="row">
-    <div class="col s6 left-align ">
-        {{#each items}}
-            <div class="card-panel hoverable">
-                <h4>{{title}}</h4> 
-                <a class="waves-effect waves-light btn" id="articleLink" href="{{link}}">Article Link</a>
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="articleComment">Leave a Comment</a>
+    <div class="col s8 offset-s2">
+        <div class="card">
+            <div class="card-content">
+                <h3 class="card-title grey-text text-darken-4">{{title}}</h3>
+                <br>
+                <a class="waves-effect waves-light btn right note-starter activator" data-id="{{id}}">Leave a Comment<i class="material-icons right">more_vert</i></a>
+                <p><a class="waves-effect waves-light btn" href="{{link}}">Article Link</a> <a> </a> <a class="waves-effect waves-light btn" href="/articles/{{id}}">Comments</a></p>
+                <br>
             </div>
-
-            <div id="modal1" class="modal">
-                <div class="modal-content">
-                    <div class="row">
-                        <form class="col s12">
-                            <div class="row">
-                                <div class="input-field col s6 offset-s2">
-                                    <input id="title" type="text" class="validate">
-                                    <label for="comment_title">Comment Title</label>
-                                </div>
-                            </div>
-                            <div class="divider"></div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="comment" type="text" class="validate">
-                                    <label for="comment_body">Leave your full note here...</label>
-                                </div>
-                            </div>
-                        </form>
+            <div class="card-reveal">
+                <form class="col s12">
+                    <div class="input-field col s8">
+                        <input id="title-{{id}}" type="text" class="validate note-title">
+                        <label for="comment_title">Comment Title</label>
                     </div>
-                </div>
-                    <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                </div>
+                    <div class="input-field col s4">
+                        <span class="card-title grey-text text-darken-4"><a class="waves-effect waves-light btn post-notes" data-id="{{id}}" href="">POST</a><i class="material-icons right">close</i></span>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="body-{{id}}" type="text" class="validate note-body">
+                        <label for="comment_body">Leave a comment here...</label>
+                    </div>
+                </form> 
             </div>
-
-        {{/each}}
-
+        </div>
     </div>
 </div>
+{{/each}}

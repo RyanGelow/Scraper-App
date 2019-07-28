@@ -19,6 +19,10 @@ router.get("/scrape", function(req, res) {
             $(this).find('li.item').each(function(i, element) {      
                 result.title = $(this).find('a').text();
                 result.link = 'https://www.sfgate.com/sports/' + $(this).find('a').attr('href');
+                let idPart1 = 'https://www.sfgate.com/sports/' + $(this).find('a').attr('href').split(".");
+                // console.log(idPart1);
+                let idPart2 = idPart1.split('-');
+                result.id = idPart2[(idPart2.length - 1)]
                 db.Article.create(result)
                 .then(function(dbArticle) {
                     console.log(dbArticle);
@@ -28,8 +32,8 @@ router.get("/scrape", function(req, res) {
                 });
             })
         });
-    res.redirect('/');
-    res.send("Scrape Complete");
+        // Send a message to the client
+        res.redirect('/');
     });
 });
 
@@ -47,7 +51,7 @@ router.get("/articles", function(req, res) {
 // Route for grabbing a specific Article by id, populate it with it's note
 router.get("/articles/:id", function(req, res) {
     db.Article.findOne({ _id: req.params.id })
-        .populate("note")
+        .populate("notes")
         .then(function(dbArticle) {
             res.json(dbArticle);
         })
@@ -55,11 +59,11 @@ router.get("/articles/:id", function(req, res) {
             res.json(err);
         });
 });
-  
-// Route for saving/updating an Article's associated Note
+
 router.post("/articles/:id", function(req, res) {
     db.Note.create(req.body)
         .then(function(dbNote) {
+            console.log(dbNote)
             return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
         })
         .then(function(dbArticle) {
@@ -69,6 +73,17 @@ router.post("/articles/:id", function(req, res) {
             res.json(err);
         });
 });
+
+// Route for getting all Article's Notes from the db
+router.get("/notes/:id", function(req, res) {
+    db.Note.findOne({ _id: req.params.id })
+        .then(function(dbNote) {
+            res.json(dbNote);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});   
 
 // Route for clearing all articles in db
 router.get('/clearAll', (req, res) => {

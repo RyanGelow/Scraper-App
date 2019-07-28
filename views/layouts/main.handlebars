@@ -7,10 +7,11 @@
     <title>Scraper Sports News</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    {{!-- <script type="text/javascript" src="./../app.js"></script> --}}
 </head>
 <body>
 
-    {{> nav/navbar}}
+    {{> navbar}}
     <main>
         <div class="container">
             {{{body}}}
@@ -18,9 +19,55 @@
     </main>
     {{> footer}}
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script 
+        src="https://code.jquery.com/jquery-3.4.1.min.js" 
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="text/javascript" src="./../../app/public/js/app.js"></script>
+    <script>
+        
+        // Activated at click to leave note:
+        $(document).ready(function() {
+            let thisId = $('#notes-title').attr('data-id')
+            $.ajax({
+                method: "GET",
+                url: "/api/articles/" + thisId
+            }).then(function(data){
+                if(data.note){
+                    let noteId = data.note
+                    $.ajax({
+                        method: "GET",
+                        url: "/api/notes/" + noteId
+                    }).then(function(note){
+                        $('.existing-note').removeClass('hide');
+                        $('.noted').append(`<h3 class="card-title grey-text text-darken-4">${note.title}</h3>`)
+                        $('.noted').append(`<p>${note.body}</p>`)
+                    })
+                }
+            }) 
+            // When you click the post button
+            $('.post-notes').on("click", function() {
+                // Run a POST request to change the note, using what's entered in the inputs
+                let postId = this.$('.post-notes').attr('data-id')
 
+                $.ajax({
+                    method: "POST",
+                    url: "/api/articles/" + postId,
+                    data: {
+                        title: $(`#title-${postId}`).val(),
+                        // Value taken from note textarea
+                        body: $(`#body-${postId}`).val(),
+                    }
+                })
+                // With that done
+                .then(function(data) {
+                    console.log(data);
+                    location.reload();
+
+                });
+            })
+        })
+
+    </script>
 </body>
 </html>
