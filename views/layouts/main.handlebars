@@ -48,21 +48,20 @@
             // When you click the post button
             $('.post-notes').on("click", function() {
                 // Run a POST request to change the note, using what's entered in the inputs
-                let postId = this.$('.post-notes').attr('data-id')
 
                 $.ajax({
                     method: "POST",
-                    url: "/api/articles/" + postId,
+                    url: "/api/articles/" + thisId,
                     data: {
-                        title: $(`#title-${postId}`).val(),
+                        title: $(`#title-${thisId}`).val(),
                         // Value taken from note textarea
-                        body: $(`#body-${postId}`).val(),
+                        body: $(`#body-${thisId}`).val(),
                     }
                 })
                 // With that done
                 .then(function(data) {
                     console.log(data);
-                    location.reload();
+                    //location.reload();
 
                 });
             })
