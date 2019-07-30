@@ -47,6 +47,8 @@
             }) 
             // When you click the post button
             $('.post-notes').on("click", function() {
+                let thisId = $(this).attr('data-id')
+                console.log('post note', thisId)
                 // Run a POST request to change the note, using what's entered in the inputs
 
                 $.ajax({
