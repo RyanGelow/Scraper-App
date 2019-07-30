@@ -17,11 +17,11 @@ This app uses the cheerio and mongoose packages for scraping and updating the da
 From here, go down the list of articles and click to view their original source or click to leave a comment. You can leave a comment right there on the front end by pressing "Leave a Comment" to open a text form in the same webpage where you can input a comment title and body, and then press "POST" to have it entered into the database. After this the comment can only be viewed by pressing the "Comments" button which leads to another page and just centers on the headline, the latest comment, a place to leave another comment, and also the link to the originally scraped article should you want to read more.   
 
 4. Here are a few photo examples of the Sports News Web Scraper in action:
-        ![Pre-Scrape / Post-Clear](https://github.com/RyanGelow/bamazon/blob/master/images/bamazon_customer_insufficient_quantity.png)
-        ![After Scrape](https://github.com/RyanGelow/bamazon/blob/master/images/bamazon_customer_order_processed.png)
-        ![Front Page Note](https://github.com/RyanGelow/bamazon/blob/master/images/bamazon_customer_product_list.png)
-        ![Article Page Note Making](https://github.com/RyanGelow/bamazon/blob/master/images/bamazon_manager_add_new_product.png)
-        ![Article Page Note Posted](https://github.com/RyanGelow/bamazon/blob/master/images/bamazon_manager_low_inventory.png)
+        ![Pre-Scrape / Post-Clear](https://github.com/RyanGelow/Scraper-App/blob/master/images/starter.png)
+        ![After Scrape](https://github.com/RyanGelow/Scraper-App/blob/master/images/scraped.png)
+        ![Front Page Note](https://github.com/RyanGelow/Scraper-App/blob/master/images/front-note.png)
+        ![Article Page Note Making](https://github.com/RyanGelow/Scraper-App/blob/master/images/page-note-posting.png)
+        ![Article Page Note Posted](https://github.com/RyanGelow/Scraper-App/blob/master/images/page-note-posted.png)
 
 5. Link to app: https://github.com/RyanGelow/bamazon
 
